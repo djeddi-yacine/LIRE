@@ -5,8 +5,8 @@ apply plugin: 'java'
 apply plugin: 'project-report'
 
 
-sourceCompatibility = 16
-version = '1.0_b07'
+sourceCompatibility = 22
+version = '1.0-anicine'
 jar {
     manifest {
         attributes 'Implementation-Title': 'LIRE',
@@ -27,9 +27,9 @@ dependencies {
     implementation 'org.apache.lucene:lucene-backward-codecs:8.9.0'
 
     // ---< Commons >---
-    implementation 'commons-io:commons-io:2.6'
+    implementation 'commons-io:commons-io:2.7'
     implementation 'org.apache.commons:commons-math3:3.6.1'
-    implementation 'commons-codec:commons-codec:1.11'
+    implementation 'commons-codec:commons-codec:1.13'
     implementation 'com.sangupta:jopensurf:1.0.0'
 
     implementation fileTree(dir: 'lib', include: '*.jar')
@@ -37,13 +37,13 @@ dependencies {
     // ---< Helper files, optional >---
     implementation 'com.twelvemonkeys.imageio:imageio-jpeg:3.4.1'
 
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.1'
 }
 
 /**
  * Task for getting all the dependencies downloaded.
  */
-task getDeps(type: Copy) {
+tasks.register('getDeps', Copy) {
     from sourceSets.main.runtimeClasspath
     into 'dist/lib'
 }
